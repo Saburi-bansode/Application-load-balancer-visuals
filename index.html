@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Application Load Balancer Visual · #Buildwithvinit</title>
+<meta name="description" content="Animated, beginner-friendly explanation of the AWS Application Load Balancer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Application Load Balancer, explained</h1>
+    <p>Ravi’s online shop is getting popular. Meet the receptionist who keeps every server calm.</p>
+  </div>
+  <div class="tools">
+    <span class="brand">#Buildwithvinit</span>
+    <button id="theme" class="btn" aria-label="Toggle light and dark page theme">Light / Dark</button>
+  </div>
+</header>
+
+<main class="app">
+  <nav class="side" aria-label="Steps"><ol id="steps"></ol></nav>
+
+  <section class="stage">
+    <div class="controls" role="group" aria-label="Playback controls">
+      <button id="play" class="btn">Play</button>
+      <button id="pause" class="btn">Pause</button>
+      <button id="reset" class="btn">Reset</button>
+      <button id="fail" class="btn warn">Simulate EC2 failure</button>
+      <span id="status" class="status" role="status" aria-live="polite"></span>
+    </div>
+
+    <div class="dwrap">
+<svg id="dia" viewBox="0 0 1100 620" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-labelledby="dt dd">
+<title id="dt">Application Load Balancer architecture</title>
+<desc id="dd">Visitors reach Route 53, which points to an Application Load Balancer. A listener forwards requests to a target group of EC2 web servers in two Availability Zones.</desc>
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c1538"/><stop offset="1" stop-color="#050a1c"/></linearGradient>
+  <path id="pm" d="M170,310 L380,310"/>
+  <path id="pd1" d="M140,265 C140,150 170,125 230,125"/>
+  <path id="pd2" d="M350,125 C420,125 450,190 450,250"/>
+  <path id="pcw" d="M480,370 L480,495"/>
+  <path id="pasg" d="M935,510 L890,510"/>
+</defs>
+<rect width="1100" height="620" rx="18" fill="url(#sky)"/>
+<g id="stars"></g>
+
+<!-- 1. WIRES -->
+<g id="wires">
+  <path class="wire b rev" data-s="2" d="M140,265 C140,150 170,125 230,125"/>
+  <path class="wire b rev" data-s="2" d="M350,125 C420,125 450,190 450,250"/>
+  <path class="wire b rev" data-s="3" d="M170,310 L380,310"/>
+  <path class="wire w rev" data-s="9" d="M480,370 L480,495"/>
+  <path class="wire g rev" data-s="8" d="M935,510 L890,510"/>
+</g>
+
+<!-- 2. BOXES -->
+<g id="boxes">
+  <g class="rev" data-s="1">
+    <rect class="bx blue" x="40" y="265" width="130" height="90" rx="14"/>
+    <text x="105" y="297" class="mid" font-size="22">📱 💻 🖥️</text>
+    <text x="105" y="326" class="mid t1">Visitors</text>
+    <text x="105" y="344" class="mid t3">Ravi’s shop customers</text>
+  </g>
+  <g class="rev" data-s="2">
+    <rect class="bx blue" x="230" y="90" width="120" height="70" rx="14"/>
+    <text x="290" y="120" class="mid t1">Route 53</text>
+    <text x="290" y="140" class="mid t3">the DNS phone book</text>
+    <text x="125" y="200" class="end t3">Where is</text>
+    <text x="125" y="214" class="end t3">ravi-shop.com?</text>
+    <text x="470" y="200" class="t3">Answer: the</text>
+    <text x="470" y="214" class="t3">ALB’s address</text>
+  </g>
+  <g class="rev" data-s="3">
+    <rect class="bx teal" x="380" y="250" width="140" height="120" rx="16"/>
+    <text x="450" y="283" class="mid" font-size="28">🛎️</text>
+    <text x="450" y="314" class="mid t1">Application</text>
+    <text x="450" y="332" class="mid t1">Load Balancer</text>
+    <text x="450" y="354" class="mid t3">the receptionist</text>
+    <text x="275" y="294" class="mid t3">HTTP / HTTPS requests</text>
+  </g>
+  <g class="rev" data-s="4">
+    <rect class="bx gold" x="560" y="280" width="100" height="60" rx="12"/>
+    <text x="610" y="307" class="mid t1">Listener</text>
+    <text x="610" y="325" class="mid t3">checks the rules</text>
+    <rect class="chip gold" x="562" y="246" width="44" height="24" rx="12"/><text x="584" y="258" class="mid t2">80</text>
+    <rect class="chip gold" x="614" y="246" width="44" height="24" rx="12"/><text x="636" y="258" class="mid t2">443</text>
+    <rect class="bx gold" x="525" y="395" width="165" height="72" rx="12"/>
+    <text x="537" y="415" class="t2">Rules, checked in order</text>
+    <text x="537" y="434" class="t3">80  → redirect to 443</text>
+    <text x="537" y="451" class="t3">443 → forward to group</text>
+  </g>
+  <g class="rev" data-s="5">
+    <rect class="bx purple" x="700" y="130" width="370" height="445" rx="18"/>
+    <text x="716" y="155" class="t1">Target group · web-servers</text>
+    <rect class="az" x="720" y="175" width="330" height="150" rx="12"/>
+    <text x="734" y="195" class="t3">Availability Zone A</text>
+    <rect class="az" x="720" y="345" width="330" height="215" rx="12"/>
+    <text x="1036" y="363" class="end t3">Availability Zone B</text>
+  </g>
+  <g id="servers"></g>
+  <g class="rev" data-s="8">
+    <rect class="bx gold" x="935" y="465" width="110" height="90" rx="12"/>
+    <text x="990" y="492" class="mid t2">Auto Scaling</text>
+    <text x="990" y="510" class="mid t2">Group</text>
+    <text x="990" y="534" class="mid t3">adds servers</text>
+  </g>
+  <g class="rev" data-s="9">
+    <rect class="sg" x="368" y="238" width="164" height="144" rx="16"/>
+    <text x="374" y="398" class="t3">🔒 ALB security group</text>
+    <rect class="chip blue" x="190" y="332" width="170" height="44" rx="12"/>
+    <text x="275" y="347" class="mid t2">🔐 HTTPS encrypted</text>
+    <text x="275" y="364" class="mid t3">TLS ends at the ALB</text>
+    <rect class="bx teal" x="360" y="495" width="240" height="65" rx="14"/>
+    <text x="480" y="522" class="mid t1">📈 CloudWatch</text>
+    <text x="480" y="542" class="mid t3">requests · health · latency</text>
+    <text x="885" y="600" class="mid t3">🔒 Web security group: only the ALB may connect</text>
+  </g>
+</g>
+
+<!-- 3. MOVING PACKETS -->
+<g id="packets">
+  <g class="rev pk" data-s="2">
+    <text class="ico">🔎<animateMotion dur="3s" repeatCount="indefinite"><mpath href="#pd1"/></animateMotion></text>
+    <text class="ico" visibility="hidden">📍<set attributeName="visibility" to="visible" begin="1.5s"/><animateMotion dur="3s" begin="1.5s" repeatCount="indefinite"><mpath href="#pd2"/></animateMotion></text>
+  </g>
+  <g class="rev pk" data-s="3">
+    <text class="ico">✉️<animateMotion dur="3s" repeatCount="indefinite"><mpath href="#pm"/></animateMotion></text>
+  </g>
+  <g class="rev pk" data-s="9">
+    <text class="ico" visibility="hidden">🛡️<set attributeName="visibility" to="visible" begin="1.5s"/><animateMotion dur="3s" begin="1.5s" repeatCount="indefinite"><mpath href="#pm"/></animateMotion></text>
+    <text class="ico">📊<animateMotion dur="3s" repeatCount="indefinite"><mpath href="#pcw"/></animateMotion></text>
+  </g>
+  <g class="rev pk" data-s="8">
+    <text class="ico">➕<animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#pasg"/></animateMotion></text>
+  </g>
+  <g id="srvpk"></g>
+</g>
+</svg>
+    </div>
+
+    <ul class="legend" aria-label="Legend">
+      <li>✉️ Incoming HTTP request</li><li>🛒 Customer request</li><li>✅ Healthy target</li>
+      <li>❌ Unhealthy target</li><li>📦 Server response</li><li>🛡️ HTTPS security</li><li>📊 Monitoring activity</li>
+    </ul>
+
+    <article class="cap" aria-live="polite">
+      <h2 id="ct"></h2>
+      <div class="cols">
+        <div><h3>In plain words</h3><p id="cp"></p></div>
+        <div><h3>Technical name</h3><p id="cn"></p></div>
+        <div><h3>Watch the picture</h3><p id="cw"></p></div>
+      </div>
+    </article>
+  </section>
+</main>
+<footer>Built with plain HTML, CSS and JavaScript · MIT License · <strong>#Buildwithvinit</strong></footer>
+<script src="js/app.js"></script>
+</body>
+</html>
